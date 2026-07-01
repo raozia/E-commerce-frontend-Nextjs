@@ -314,6 +314,6 @@ export const products = [
         title: "Air Pods Max",
         price: 235,
         image: "/airpodsmax.png",
-    },
+    }
 ];
 

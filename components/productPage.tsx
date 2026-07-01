@@ -5,7 +5,7 @@ import { IoIosArrowForward, IoIosArrowBack, IoIosArrowDown } from "react-icons/i
 import { brandOptions, mobiles, products } from './data';
 import Buttons from './UI/Buttons';
 import Link from 'next/link';
-
+import { IoSearchOutline } from "react-icons/io5";
 interface ProductPageProps {
     params: {
         slug: string
@@ -19,7 +19,6 @@ const ProductPage = ({ params }: ProductPageProps) => {
     const filteredProducts = products.filter(
         item => item.category === slug
     );
-    // console.log("productslist>>>>>>>>>>>>>>>>", filteredProducts)
     const [currentPage, setcurrentPage] = useState(1);
     const itemsPerPage = 3;
     const totalProducts = Math.ceil(filteredProducts.length / itemsPerPage)
@@ -32,12 +31,15 @@ const ProductPage = ({ params }: ProductPageProps) => {
             lastItem
         )
     }, [currentPage, filteredProducts])
-
+    const [searchItem, setsearchItem] = useState("")
     const [isExpand, setIsexpand] = useState<number | null>(null)
     const [openFilter, setopenFilter] = useState(false)
     const handleExpand = (id: number) => {
         setIsexpand(prev => (prev === id ? null : id))
     }
+    const productSearch = product.filter((item) => (
+        item.title.toLowerCase().includes(searchItem.toLowerCase())
+    ))
     return (
         <div>
             <div className='flex flex-col md:flex-row gap-10 font-inter'>
@@ -59,6 +61,10 @@ const ProductPage = ({ params }: ProductPageProps) => {
                             <div>
                                 {isOpen && (
                                     <div className="mt-2">
+                                        <div className='flex items-center gap-2 bg-[#F5F5F5] p-2 rounded-md'>
+                                            <IoSearchOutline className='w-5 h-5 text-[#989898]' />
+                                            <input type="search" placeholder='Search here' value={searchItem} onChange={(e) => setsearchItem(e.target.value)} className='text-sm outline-0' />
+                                        </div>
                                         <ul>
                                             {item.options.map((option, index) => (
                                                 <li
@@ -92,11 +98,15 @@ const ProductPage = ({ params }: ProductPageProps) => {
                         <h1 className='text-2xl'>Select Products</h1>
                     </div>
                     <div className='grid sm:grid-cols-2  lg:grid-cols-3 gap-10'>
-                        {product.map((it) => (
-                            <Link href={`/products/${it.slug}`} key={it.id}>
-                                <ProductCard key={it.id} product={it} />
-                            </Link>
-                        ))}
+                        {productSearch.length > 0 ? (
+                            productSearch.map((product) => (
+                                <Link href={`/products/${product.slug}`} key={product.id}>
+                                    <ProductCard key={product.id} product={product} />
+                                </Link>
+                            ))
+                        ) : (
+                            <p className="text-gray-500">No products found.</p>
+                        )}
                     </div>
                     <div className='flex justify-center items-center mt-2'>
                         <button
@@ -111,7 +121,7 @@ const ProductPage = ({ params }: ProductPageProps) => {
                         </div>
                         <button
                             className=" disabled:opacity-50"
-                            disabled={currentPage === totalProducts}
+                            disabled={currentPage >= totalProducts}
                             onClick={() => setcurrentPage((prev) => prev + 1)}>
                             <IoIosArrowForward className='w-10 h-10' />
                         </button>

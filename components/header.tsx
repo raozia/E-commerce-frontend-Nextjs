@@ -2,16 +2,15 @@
 import Link from 'next/link'
 import { useState } from 'react';
 import { GrFavorite } from "react-icons/gr";
-import { IoCartOutline } from "react-icons/io5";
-import { IoPersonOutline } from "react-icons/io5";
-import { IoSearchOutline } from "react-icons/io5";
-import { IoMenu } from "react-icons/io5";
+import { IoPersonOutline, IoSearchOutline, IoMenu, IoCartOutline } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
-
+import { useSearch } from '@/context/searchContext';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false)
-
+    const searchContext = useSearch()
+    if (!searchContext) return null
+    const { searchQuery, setsearchQuery } = searchContext
     return (
         <header>
             <div>
@@ -32,11 +31,11 @@ const Header = () => {
                         <div>
                             <div className='flex items-center gap-2 bg-gray-100 p-4 rounded-sm text-[#989898]'>
                                 <IoSearchOutline className='w-4 h-4' />
-                                <input type="search" placeholder='Search here' className='text-sm outline-0' />
+                                <input type="search" placeholder='Search here' value={searchQuery} onChange={(e) => setsearchQuery(e.target.value)} className='text-sm outline-0' />
                             </div>
                         </div>
                         <div className='flex flex-col sm:flex-row items-center gap-5 mt-5 sm:mt-0 sm:gap-13 text-[16px]'>
-                            <Link href="#" className='text-gray-500 hover:text-black'>Home</Link>
+                            <Link href="/" className='text-gray-500 hover:text-black'>Home</Link>
                             <Link href="#" className='text-gray-500 hover:text-black'>About</Link>
                             <Link href="#" className='text-gray-500 hover:text-black'>Contact</Link>
                             <Link href="#" className='text-gray-500 hover:text-black'>Blog</Link>
@@ -47,8 +46,6 @@ const Header = () => {
                             <IoPersonOutline className='w-5 h-5' />
                         </div>
                     </div>
-
-
                 </div>
             </div >
         </header >
