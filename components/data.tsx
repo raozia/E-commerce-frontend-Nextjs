@@ -251,25 +251,28 @@ export const popularproducts = [
 export const brandOptions = [
     {
         id: 1,
-        title: "Brand",
-        options: ["Apple", "Samsung"]
+        title: "brand",
+        options: ["Apple", "Samsung"],
     },
     {
         id: 2,
-        title: "Battery Capacity",
-        options: ["Apple", "Samsung"]
+        title: "batteryCapacity",
+        options: ["5000MAH", "6000MAH"],
     },
     {
         id: 3,
-        title: "Screen Type",
-        options: ["Apple", "Samsung"]
+        title: "screenType",
+        options: ["OLED", "AMOLED"],
     },
     {
         id: 4,
-        title: "Protection Glass",
-        options: ["Apple", "Samsung"]
-    }
-]
+        title: "protectionGlass",
+        options: [
+            "Gorilla Glass Victus",
+            "Gorilla Glass Armor",
+        ],
+    },
+];
 
 export const products = [
     {
@@ -279,6 +282,10 @@ export const products = [
         title: "Apple iPhone 14 Pro Max",
         price: 900,
         image: "/iphone14pro.png",
+        brand: "Apple",
+        batteryCapacity: "5000MAH",
+        screenType: "OLED",
+        protectionGlass: "Gorilla Glass Victus"
     },
 
     {
@@ -288,6 +295,10 @@ export const products = [
         title: "Samsung S25 Ultra",
         price: 1200,
         image: "/samsunggalaxy.png",
+        brand: "Samsung",
+        batteryCapacity: "6000MAH",
+        screenType: "OLED",
+        protectionGlass: "Gorilla Glass Victus"
     },
 
     {
@@ -297,6 +308,10 @@ export const products = [
         title: "Apple Watch Series 9",
         price: 399,
         image: "/samsungwatch.png",
+        brand: "Apple",
+        batteryCapacity: "2000MAH",
+        screenType: "OLED",
+        protectionGlass: "Gorilla Glass Armor"
     },
 
     {
@@ -306,6 +321,10 @@ export const products = [
         title: "Blackmagic Pocket 6K",
         price: 2535,
         image: "/camera.png",
+        brand: "Samsung",
+        batteryCapacity: "1000MAH",
+        screenType: "OLED",
+        protectionGlass: "Gorilla Glass Victus"
     },
     {
         id: 5,
@@ -314,6 +333,10 @@ export const products = [
         title: "Air Pods Max",
         price: 235,
         image: "/airpodsmax.png",
+        brand: "Apple",
+        batteryCapacity: "2500MAH",
+        screenType: "OLED",
+        protectionGlass: "Gorilla Glass Victus"
     }
 ];
 

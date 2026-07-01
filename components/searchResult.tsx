@@ -19,8 +19,8 @@ const SearchResult = ({ results }: SearchResultProps) => {
     if (results.length === 0) {
         return (
             <div className="py-20 text-center">
-                <h2 className="text-2xl font-semibold">
-                    Product Not Found
+                <h2 className="text-2xl font-semibold text-[#909090]">
+                    No Product Found
                 </h2>
             </div>
         );

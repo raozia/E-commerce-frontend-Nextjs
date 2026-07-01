@@ -1,5 +1,5 @@
 "use client"
-import React, { createContext, useState, ReactNode, Dispatch, SetStateAction, useContext } from 'react'
+import { createContext, useState, ReactNode, Dispatch, SetStateAction, useContext } from 'react'
 
 type SearchContextType = {
     searchQuery: string
